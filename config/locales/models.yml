@@ -11,4 +11,12 @@ pt-BR:
         area: 'Área'
         description: 'Descrição'
         city: 'Cidade'
-      # will translate User attribute "login" as "Handle"
+      supplier:
+        corporate_name: 'Razão social'
+        brand_name: 'Nome fantasia'
+        registration_number: 'CNPJ'
+        full_address: 'Endereço'
+        city: 'Cidade'
+        state: 'Estado'
+        email: 'Email'
+

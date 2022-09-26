@@ -1,5 +1,10 @@
 class WarehousesController < ApplicationController
   before_action :set_warehouse, only:[:show, :edit, :update, :destroy]
+
+  def index
+    @warehouses = Warehouse.all
+  end
+  
   def show
     #set_warehouse
   end
