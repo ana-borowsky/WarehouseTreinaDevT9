@@ -6,6 +6,6 @@
   <strong>CNPJ: </strong><%= @supplier.registration_number[0..1] %>.<%= @supplier.registration_number[2..4] %>.<%= @supplier.registration_number[5..7] %>/<%= @supplier.registration_number[8..11] %>-<%= @supplier.registration_number[12,13] %><br><br>
 </div>
 
-<%= link_to('Editar', edit_warehouse_path(@supplier.id)) %><br><br>
+<%= link_to('Editar', edit_supplier_path(@supplier.id)) %><br><br>
 <%= button_to('Remover', suppliers_path(@supplier.id), method: :delete) %><br>
 <%= link_to('Voltar', suppliers_path) %>

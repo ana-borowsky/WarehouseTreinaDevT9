@@ -29,6 +29,8 @@ describe 'Usuário vê detalhes de um fornecedor' do
     email: 'perna@longa.com', full_address: 'O que é que há, velhinho, 29', 
     registration_number: '33333333333333', state: 'Rio Grande do Sul')
 
+    s.save()
+
     # Act
     visit root_path
     click_on 'Fornecedores'
