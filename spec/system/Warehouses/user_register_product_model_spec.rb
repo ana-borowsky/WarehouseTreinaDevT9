@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'Usuário cadastra um modelo de produto' do
   it 'com sucesso' do
     #Arrange
+    user = User.create!(name: 'Catatau', email: 'catatau@adoromel.com', password: 'adoromel')
     supplier = Supplier.create!(brand_name:'Samsung', corporate_name: 'Samsung Eletronicos LTDA', 
                                 registration_number: '15462839405843', full_address: 'Avenida das nações, 300', 
                                 city: 'São Paulo', state: 'SP', email: 'contato@samsung.com')
@@ -11,6 +12,7 @@ describe 'Usuário cadastra um modelo de produto' do
                                 city: 'Florianópolis', state: 'C', email: 'contato@lg.com')
 
     #act
+    login_as(user)
     visit root_path
     click_on 'Modelos de produtos'
     click_on 'Cadastrar novo'
@@ -33,11 +35,13 @@ describe 'Usuário cadastra um modelo de produto' do
 
   it 'deve preencher todos os campos' do
     #Arrange
+    user = User.create!(name: 'Catatau', email: 'catatau@adoromel.com', password: 'adoromel')
     supplier = Supplier.create!(brand_name:'Samsung', corporate_name: 'Samsung Eletronicos LTDA', 
                                 registration_number: '15462839405843', full_address: 'Avenida das nações, 300', 
                                 city: 'São Paulo', state: 'SP', email: 'contato@samsung.com')
    
     #act
+    login_as(user)
     visit root_path
     click_on 'Modelos de produtos'
     click_on 'Cadastrar novo'

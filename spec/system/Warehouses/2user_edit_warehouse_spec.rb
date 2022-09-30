@@ -3,8 +3,10 @@ require 'rails_helper'
 describe 'Usuário edita um galpão' do
   it 'a partir da página de detalhes' do
     #Arrange
+    user = User.create!(name: 'Catatau', email: 'catatau@adoromel.com', password: 'adoromel')
     warehouse = Warehouse.create!(name: 'Rio', code: 'RIO', address: 'Avenida Beira Mar, 1000', cep:'25000000', city: 'Rio de Janeiro', area: 1000, description: 'galpão de estoque')
     #Act
+    login_as(user)
     visit root_path
     click_on 'Rio'
     click_on 'Editar'
@@ -21,8 +23,10 @@ describe 'Usuário edita um galpão' do
 
   it 'com sucesso' do
     #Arrange
+    user = User.create!(name: 'Catatau', email: 'catatau@adoromel.com', password: 'adoromel')
     warehouse = Warehouse.create!(name: 'Rio', code: 'RIO', address: 'Avenida Beira Mar, 1000', cep:'25000000', city: 'Rio', area: 1000, description: 'galpão de estoque')
     #Act
+    login_as(user)
     visit root_path
     click_on 'Rio'
     click_on 'Editar'
@@ -39,8 +43,10 @@ describe 'Usuário edita um galpão' do
 
   it 'e mantém os campos obrigatórios' do
     #Arrange
+    user = User.create!(name: 'Catatau', email: 'catatau@adoromel.com', password: 'adoromel')
     warehouse = Warehouse.create!(name: 'Rio', code: 'RIO', address: 'Avenida Beira Mar, 1000', cep:'25000000', city: 'Rio', area: 1000, description: 'galpão de estoque')
     #Act
+    login_as(user)
     visit root_path
     click_on 'Rio'
     click_on 'Editar'

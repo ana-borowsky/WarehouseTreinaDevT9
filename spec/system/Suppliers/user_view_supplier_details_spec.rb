@@ -3,13 +3,14 @@ require 'rails_helper'
 describe 'Usuário vê detalhes de um fornecedor' do
   it 'e vê informações adicionais' do
     # Arrange
+    user = User.create!(name: 'Catatau', email: 'catatau@adoromel.com', password: 'adoromel')
     s = Supplier.new(corporate_name:'Looney Tunes', brand_name: 'Pernalonga', city: 'Mato Leitão', 
                     email: 'perna@longa.com', full_address: 'O que é que há, velhinho, 29', 
                     registration_number: '33333333333333', state: 'Rio Grande do Sul')
     s.save()
 
     # Act
-
+    login_as(user)
     visit root_path
     click_on 'Fornecedores'
     click_on('Looney Tunes')
@@ -25,6 +26,7 @@ describe 'Usuário vê detalhes de um fornecedor' do
 
   it 'e volta para a tela inicial' do
     # Arrange
+    user = User.create!(name: 'Catatau', email: 'catatau@adoromel.com', password: 'adoromel')
     s = Supplier.new(corporate_name:'Looney Tunes', brand_name: 'Pernalonga', city: 'Mato Leitão', 
     email: 'perna@longa.com', full_address: 'O que é que há, velhinho, 29', 
     registration_number: '33333333333333', state: 'Rio Grande do Sul')
@@ -32,6 +34,7 @@ describe 'Usuário vê detalhes de um fornecedor' do
     s.save()
 
     # Act
+    login_as(user)
     visit root_path
     click_on 'Fornecedores'
     click_on 'Looney Tunes'

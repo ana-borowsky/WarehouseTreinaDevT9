@@ -3,11 +3,13 @@ require 'rails_helper'
 describe 'Usuário edita um fornecedor' do
   it 'a partir da página de detalhes' do
     #Arrange
+    user = User.create!(name: 'Catatau', email: 'catatau@adoromel.com', password: 'adoromel')
     s = Supplier.create!(corporate_name:'Looney Tunes', brand_name: 'Pernalonga', city: 'Mato Leitão', 
                         email: 'perna@longa.com', full_address: 'O que é que há, velhinho, 29', 
                         registration_number: '33333333333333', state: 'Rio Grande do Sul')
 
     #Act
+    login_as(user)
     visit root_path
     click_on 'Fornecedores'
     click_on 'Looney Tunes'
@@ -25,11 +27,13 @@ describe 'Usuário edita um fornecedor' do
 
   it 'com sucesso' do
     #Arrange
+    user = User.create!(name: 'Catatau', email: 'catatau@adoromel.com', password: 'adoromel')
     s = Supplier.create!(corporate_name:'Looney Tunes', brand_name: 'Pernalonga', city: 'Mato Leitão', 
     email: 'perna@longa.com', full_address: 'O que é que há, velhinho, 29', 
     registration_number: '33333333333333', state: 'Rio Grande do Sul')
 
     #Act
+    login_as(user)
     visit root_path
     click_on 'Fornecedores'
     click_on 'Looney Tunes'
@@ -49,11 +53,13 @@ describe 'Usuário edita um fornecedor' do
 
   it 'e mantém os campos obrigatórios' do
     #Arrange
+    user = User.create!(name: 'Catatau', email: 'catatau@adoromel.com', password: 'adoromel')
     s = Supplier.create!(corporate_name:'Looney Tunes', brand_name: 'Pernalonga', city: 'Mato Leitão', 
     email: 'perna@longa.com', full_address: 'O que é que há, velhinho, 29', 
     registration_number: '33333333333333', state: 'Rio Grande do Sul')
 
     #Act
+    login_as(user)
     visit root_path
     click_on 'Fornecedores'
     click_on 'Looney Tunes'

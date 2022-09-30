@@ -3,8 +3,10 @@ require 'rails_helper'
   describe 'Usuário cadastra um fornecedor' do
     it 'a partir da tela inicial'do
       # Arrange
+      user = User.create!(name: 'Catatau', email: 'catatau@adoromel.com', password: 'adoromel')
 
       # Act
+      login_as(user)
       visit root_path
       click_on 'Fornecedores'
       click_on 'Cadastrar Fornecedor'
@@ -21,8 +23,10 @@ require 'rails_helper'
 
     it 'com sucesso' do
       # Arrange
+      user = User.create!(name: 'Catatau', email: 'catatau@adoromel.com', password: 'adoromel')
 
       # Act
+      login_as(user)
       visit root_path
       click_on 'Fornecedores'
       click_on 'Cadastrar Fornecedor'
@@ -46,8 +50,10 @@ require 'rails_helper'
 
     it 'com dados incompletos' do
       # Arrange
+      user = User.create!(name: 'Catatau', email: 'catatau@adoromel.com', password: 'adoromel')
 
       # Act
+      login_as(user)
       visit root_path
       click_on 'Fornecedores'
       click_on 'Cadastrar Fornecedor'
