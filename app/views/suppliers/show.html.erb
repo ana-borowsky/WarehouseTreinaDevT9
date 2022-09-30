@@ -9,3 +9,21 @@
 <%= link_to('Editar', edit_supplier_path(@supplier.id)) %><br><br>
 <%= button_to('Remover', suppliers_path(@supplier.id), method: :delete) %><br>
 <%= link_to('Voltar', suppliers_path) %>
+
+<h2>Produtos deste fornecedor</h2>
+<div>
+<% if @product_models.any? %>
+  <% @product_models.each do |pm| %>
+      <div>
+        <h3><%= pm.name %></h3>
+        <dl>
+          <dt>SKU: <%= pm.sku %> </dt>
+          <dt>Dimensões: <%= pm.height %>cm x <%= pm.width %>cm x <%= pm.depth %>cm</dt>
+        </dl>
+      </div>
+  <% end %>
+
+<% else %> 
+  <p>Este fornecedor não possui produtos cadastrados.</p>
+<% end %>
+</div>

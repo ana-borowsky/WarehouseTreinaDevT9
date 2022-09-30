@@ -15,10 +15,8 @@
   <div>
     <h3><%= link_to(s.corporate_name, supplier_path(s.id)) %></h3>
       <dl>
-        <dt>Marca:</dt> 
-        <dd><%= s.brand_name %></dd>
-        <dt>Endereço:</dt>
-        <dd><%= s.full_address%>, <%= s.city %>, <%= s.state %></dd>
+        <dt>Marca: <%= s.brand_name %></dt>
+        <dt>Endereço: <%= s.full_address%>, <%= s.city %>, <%= s.state %></dt>
       <dl>
     </div>  
 <% end %>

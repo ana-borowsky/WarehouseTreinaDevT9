@@ -13,12 +13,10 @@
 
   <% @product_models.each do |pm| %>
     <div>
-      <h2><%= pm.name %></h2>
+      <h3><%= pm.name %></h3>
       <dl>
-        <dt>SKU</dt>
-        <dd><%= pm.sku %> </dd>
-        <dt>Fornecedor</dt>
-        <dd><%= pm.supplier.brand_name %></dd>
+        <dt>SKU: <%= pm.sku %> </dt>
+        <dt>Fornecedor: <%= pm.supplier.brand_name %></dt>
       </dl>
     </div>
   <% end %>

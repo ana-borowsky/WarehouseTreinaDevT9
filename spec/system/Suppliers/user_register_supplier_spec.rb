@@ -28,14 +28,14 @@ require 'rails_helper'
       click_on 'Cadastrar Fornecedor'
       fill_in 'Razão social', with: 'ACME'
       fill_in 'Nome fantasia', with: 'Coyote'
-      fill_in 'CNPJ', with: '11.111.111/1111-11'
-      fill_in 'Endereço', with: 'Avenida dos Papa-léguas, 1234, Não-Me-Toque, Rio Grande do Sul'
+      fill_in 'CNPJ', with: '11111111111111'
+      fill_in 'Endereço', with: 'Avenida dos Papa-léguas, 1234'
+      fill_in 'Cidade', with: 'Não-Me-Toque'
+      fill_in 'Estado', with: 'Rio Grande do Sul'
       fill_in 'Email', with: 'coyotegenio@acme.com'
-
       click_on 'Enviar'
 
       # Assert
-
       expect(current_path).to eq root_path
       expect(page).to have_content 'Fornecedor cadastrado com sucesso!'
       click_on 'Fornecedores'

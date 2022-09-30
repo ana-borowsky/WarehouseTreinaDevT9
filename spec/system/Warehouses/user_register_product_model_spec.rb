@@ -28,7 +28,7 @@ describe 'Usuário cadastra um modelo de produto' do
     expect(page).to have_content 'SKU: TV40-SAMS-XPTO'
     expect(page).to have_content 'Dimensões: 60cm x 90cm x 10cm'
     expect(page).to have_content 'Peso: 10000g'        
-    expect(page).to have_content 'Fornecedor: Samsung'
+    expect(page).to have_content 'Fornecedor: LG'
   end
 
   it 'deve preencher todos os campos' do
