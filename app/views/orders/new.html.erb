@@ -1,0 +1,35 @@
+<p>
+  <%= I18n.translate("hello") %>
+</p>
+<p>
+  <%= I18n.localize(Date.today) %>
+</p>
+
+<h2>Registrar pedido</h2>
+
+<% if(@order.errors.any?) %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @order.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with(model: @order) do |f| %>
+  <div>
+    <%= f.label :warehouse_id, 'Galpão de destino' %>
+    <%= f.collection_select :warehouse_id, @warehouses, :id, :full_description %><br>
+  </div>
+  <div>
+  <%= f.label :supplier_id  %>
+  <%= f.collection_select :supplier_id, @suppliers, :id, :corporate_name %><br>
+  </div>
+  <div>
+  <%= f.label :estimated_delivery_date %>
+  <%= f.date_field :estimated_delivery_date %><br>
+  </div>
+  <div>
+    <%= f.submit 'Gravar' %>
+  </div>
+<% end %>

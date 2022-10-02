@@ -2,6 +2,9 @@ pt-BR:
   activerecord:
     models:
       warehouse: 'Galpão'
+      order:
+        one: 'Pedido'
+        other: 'Pedidos'
     attributes:
       warehouse:
         name: "Nome"
@@ -28,3 +31,12 @@ pt-BR:
         sku: 'SKU'
         supplier_id: 'Fornecedor'
         supplier: 'Fornecedor'
+      order:
+        warehouse_id: "Galpão"
+        warehouse: "Galpão"
+        supplier_id: "Fornecedor"
+        supplier: "Fornecedor"
+        estimated_delivery_date: "Previsão de entrega"
+        user_id: "Usuario responsavel"
+        user: "Usuario responsavel"
+        code: "Codigo"

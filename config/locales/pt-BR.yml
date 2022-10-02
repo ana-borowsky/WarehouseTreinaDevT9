@@ -1,2 +1,5 @@
 pt-BR:
   hello: 'Boas vindas!'
+  found:
+    one: 'Encontrado'
+    other: 'Encontrados'
