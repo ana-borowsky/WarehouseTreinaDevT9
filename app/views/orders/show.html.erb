@@ -4,3 +4,10 @@
 <p>
   <%= I18n.localize(Date.today) %>
 </p>
+<h2>Pedido</h2>
+  <dl>
+    <dt>Galpão destino: <%= @order.warehouse.name %></dt>
+    <dt>Fornecedor: <%= @order.supplier.corporate_name %></dt>
+    <dt>Usuario responsavel: <%= @order.user.name %> | <%= @order.user.email %></dt>
+    <dt>Data prevista de entrega: <%= I18n.localize(@order.estimated_delivery_date) %></dt>
+  </dl>

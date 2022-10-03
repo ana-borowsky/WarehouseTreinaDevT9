@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   def index
-    @suppliers = Supplier.all
+    @orders = current_user.orders
   end
 
   def new
@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    
+
   end
 
   def search
