@@ -30,7 +30,7 @@ require 'rails_helper'
       click_on 'Registrar pedido'
       select 'CDZ - Cuiaba', from: 'Galpão de destino'
       select supplier.corporate_name, from: 'Fornecedor'
-      fill_in 'Previsão de entrega', with: 1.day.from_now
+      fill_in 'Previsão de entrega', with: 1.day.from_now.to_date
       click_on 'Gravar'
       #assert
       expect(page).to have_content 'Pedido realizado com sucesso.'
@@ -39,6 +39,5 @@ require 'rails_helper'
       expect(page).to have_content 'Fornecedor: Looney Tunes'
       expect(page).to have_content 'Usuario responsavel: Catatau | catatau@adoromel.com'
       expect(page).to have_content "Previsão de entrega:  #{order.estimated_delivery_date}"
-
     end
   end

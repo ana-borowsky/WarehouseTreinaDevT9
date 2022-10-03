@@ -33,7 +33,7 @@ describe 'Usuario busca por um pedido' do
 
     supplier = Supplier.create!(corporate_name:'Looney Tunes', brand_name: 'Pernalonga', city: 'Mato Leitão', email: 'perna@longa.com', full_address: 'O que é que há, velhinho, 29', 
                                 registration_number: '33333333333333', state: 'Rio Grande do Sul')
-    order = Order.create!(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now)
+    order = Order.create!(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now.to_date)
     #act
     login_as(user)
     visit root_path
@@ -58,11 +58,11 @@ describe 'Usuario busca por um pedido' do
                                 registration_number: '33333333333333', state: 'Rio Grande do Sul')
 
     allow(SecureRandom).to receive(:alphanumeric).and_return('SDUCF12345')
-    first_order = Order.create!(user: user, warehouse: first_warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now)
+    first_order = Order.create!(user: user, warehouse: first_warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now.to_date)
     allow(SecureRandom).to receive(:alphanumeric).and_return('SDUCF67890')
-    second_order = Order.create!(user: user, warehouse: first_warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now)
+    second_order = Order.create!(user: user, warehouse: first_warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now.to_date)
     allow(SecureRandom).to receive(:alphanumeric).and_return('CDZ0000000')
-    third_order = Order.create!(user: user, warehouse: second_warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now)
+    third_order = Order.create!(user: user, warehouse: second_warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now.to_date)
     #act
     login_as(user)
     visit root_path

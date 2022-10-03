@@ -5,7 +5,7 @@
   <%= I18n.localize(Date.today) %>
 </p>
 <h2>Resultado da busca por: <%= @code %></h2>
-<p><%= @orders.count %> <%= Order.model_name.human(count: @orders.count).downcase %> <%= I18n.translate(:found, count: @orders.count) %></p>
+<p><%= @orders.count %> <%= Order.model_name.human(count: @orders.count).downcase %> <%= I18n.translate(:found, count: @orders.count).downcase %></p>
 
 <% @orders.each do |order| %>
   <%= render order %>

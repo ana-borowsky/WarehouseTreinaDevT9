@@ -11,7 +11,7 @@ RSpec.describe Order, type: :model do
       supplier = Supplier.create!(corporate_name:'Looney Tunes', brand_name: 'Pernalonga', city: 'Mato Leitão', 
                                   email: 'perna@longa.com', full_address: 'O que é que há, velhinho, 29', 
                                   registration_number: '33333333333333', state: 'Rio Grande do Sul')
-      order = Order.new(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now)
+      order = Order.new(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now.to_date)
       #act
       result = order.valid?
       #assert
@@ -63,7 +63,7 @@ RSpec.describe Order, type: :model do
       supplier = Supplier.create!(corporate_name:'Looney Tunes', brand_name: 'Pernalonga', city: 'Mato Leitão', 
                                   email: 'perna@longa.com', full_address: 'O que é que há, velhinho, 29', 
                                   registration_number: '33333333333333', state: 'Rio Grande do Sul')
-      order = Order.new(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now)
+      order = Order.new(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now.to_date)
       #act
       order.save!
       result = order.code
@@ -81,8 +81,8 @@ RSpec.describe Order, type: :model do
       supplier = Supplier.create!(corporate_name:'Looney Tunes', brand_name: 'Pernalonga', city: 'Mato Leitão', 
                                   email: 'perna@longa.com', full_address: 'O que é que há, velhinho, 29', 
                                   registration_number: '33333333333333', state: 'Rio Grande do Sul')
-      first_order = Order.create!(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now)
-      second_order = Order.new(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now)
+      first_order = Order.create!(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now.to_date)
+      second_order = Order.new(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now.to_date)
       #act
       second_order.save!
       

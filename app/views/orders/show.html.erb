@@ -4,6 +4,9 @@
 <p>
   <%= I18n.localize(Date.today) %>
 </p>
-<h2><% Order.model_name.human %> <%= @order.code %></h2>
+<h2>Detalhes do pedido</h2>
+<h3><% Order.model_name.human %> <%= @order.code %></h3>
   <%= render order %>
 <% end %>
+
+<%= link_to 'Editar', edit_order_path(@order.id) %>

@@ -15,8 +15,10 @@
     <div>
       <h3><%= pm.name %></h3>
       <dl>
-        <dt>SKU: <%= pm.sku %> </dt>
-        <dt>Fornecedor: <%= pm.supplier.brand_name %></dt>
+        <dt><strong>SKU:</strong> <%= pm.sku %> </dt>
+        <dt><strong>Fornecedor:</strong> <%= pm.supplier.brand_name %></dt>
+        <dt><strong>Dimensões: </strong><%= pm.height %>cm x <%= pm.width %>cm x <%= pm.depth %>cm</dt>
+        <dt><strong>Peso: </strong><%= pm.weight %>g</dt>
       </dl>
     </div>
   <% end %>
