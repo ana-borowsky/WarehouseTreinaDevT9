@@ -12,6 +12,13 @@
   <dt><%= Order.human_attribute_name(:estimated_delivery_date) %>: <%= I18n.localize(@order.estimated_delivery_date) %></dt>
   <dt><%= Order.human_attribute_name(:status) %>: <%= I18n.translate(@order.status) %></dt>
 </dl>
+
+<h3>Itens do pedido</h3>
+  <%= @order.order_items.each do |item| %>
+    <%= item.quantity %> x <%= item.product_model.name %>
+  <% end %>
+
+
 <% if @order.pending? %>
   <%= button_to 'Entregue', delivered_order_path(@order.id)%>
   <%= button_to 'Cancelado', canceled_order_path(@order.id)%>
