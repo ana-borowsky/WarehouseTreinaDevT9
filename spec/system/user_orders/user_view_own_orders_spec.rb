@@ -22,9 +22,9 @@ describe 'Usuario ve seus proprios pedidos' do
     supplier = Supplier.create!(corporate_name:'Looney Tunes', brand_name: 'Pernalonga', city: 'Mato Leitão', 
                                 email: 'perna@longa.com', full_address: 'O que é que há, velhinho, 29', 
                                 registration_number: '33333333333333', state: 'Rio Grande do Sul')
-    first_order = Order.new(user: catatau, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now.to_date)
-    second_order = Order.new(user: ze_colmeia, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now.to_date)
-    third_order = Order.new(user: catatau, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now.to_date)
+    first_order = Order.create!(user: catatau, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now.to_date, status: 'pending')
+    second_order = Order.create!(user: ze_colmeia, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now.to_date, status: 'canceled')
+    third_order = Order.create!(user: catatau, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now.to_date, status: 'delivered')
     #act
     login_as(catatau)
     visit root_path
@@ -33,6 +33,10 @@ describe 'Usuario ve seus proprios pedidos' do
     expect(page).to have_content(first_order.code)
     expect(page).not_to have_content 'Ze Colmeia - zecolmeia@adoromel.com'
     expect(page).to have_content third_order.code    
+    expect(page).to have_content 'Pendente'
+    expect(page).to have_content 'Entregue'
+    expect(page).not_to have_content 'Cancelado'
+
   end
 
   it 'e visita um pedido' do

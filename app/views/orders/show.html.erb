@@ -5,5 +5,15 @@
   <%= I18n.localize(Date.today) %>
 </p>
 <h2>Detalhes do pedido: <%= @order.code %></h2>
-  <%= render 'order', order: @order %>
+<dl>
+  <dt><%= Order.human_attribute_name(:warehouse_id) %> de destino: <%= @order.warehouse.full_description %></dt>
+  <dt><%= Order.human_attribute_name(:supplier_id) %>: <%= @order.supplier.brand_name %></dt>
+  <dt><%= Order.human_attribute_name(:user_id) %>: <%= @order.user.description %></dt>
+  <dt><%= Order.human_attribute_name(:estimated_delivery_date) %>: <%= I18n.localize(@order.estimated_delivery_date) %></dt>
+  <dt><%= Order.human_attribute_name(:status) %>: <%= I18n.translate(@order.status) %></dt>
+</dl>
+<% if @order.pending? %>
+  <%= button_to 'Entregue', delivered_order_path(@order.id)%>
+  <%= button_to 'Cancelado', canceled_order_path(@order.id)%>
+<% end %>
 <%= link_to 'Editar', edit_order_path(@order.id) %>

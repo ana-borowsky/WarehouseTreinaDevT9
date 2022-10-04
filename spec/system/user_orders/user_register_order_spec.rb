@@ -34,10 +34,11 @@ require 'rails_helper'
       click_on 'Gravar'
       #assert
       expect(page).to have_content 'Pedido registrado com sucesso.'
-      expect(page).to have_content 'Numero do pedido: ASDCF12345'
+      expect(page).to have_content 'Detalhes do pedido: ASDCF12345'
       expect(page).to have_content 'Galpão de destino: CDZ - Cuiaba'
       expect(page).to have_content 'Fornecedor: Pernalonga'
       expect(page).to have_content 'Usuario responsavel: Catatau - catatau@adoromel.com'
       expect(page).to have_content "Previsão de entrega: #{I18n.localize(1.day.from_now.to_date)}"
+      expect(page).to have_content 'Status: Pendente'
     end
   end
