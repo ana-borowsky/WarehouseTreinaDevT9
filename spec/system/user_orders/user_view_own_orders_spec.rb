@@ -30,8 +30,8 @@ describe 'Usuario ve seus proprios pedidos' do
     visit root_path
     click_on 'Meus pedidos'
     #assert
-    expect(page).to have_content first_order.code
-    expect(page).not_to have_content second_order.code
+    expect(page).to have_content(first_order.code)
+    expect(page).not_to have_content 'Ze Colmeia - zecolmeia@adoromel.com'
     expect(page).to have_content third_order.code    
   end
 
@@ -42,7 +42,7 @@ describe 'Usuario ve seus proprios pedidos' do
     supplier = Supplier.create!(corporate_name:'Looney Tunes', brand_name: 'Pernalonga', city: 'Mato Leitão', 
                                 email: 'perna@longa.com', full_address: 'O que é que há, velhinho, 29', 
                                 registration_number: '33333333333333', state: 'Rio Grande do Sul')
-    order = Order.new(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now.to_date)
+    order = Order.create!(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now.to_date)
     #act
     login_as(user)
     visit root_path
@@ -50,10 +50,10 @@ describe 'Usuario ve seus proprios pedidos' do
     click_on order.code
     #assert
     expect(page).to have_content 'Detalhes do pedido'
-    expect(page).to have_content first_order.code
-    expect(page).to have_content 'Galpao destino: Cuiaba - CDZ'
+    expect(page).to have_content order.code
+    expect(page).to have_content 'Galpão de destino: CDZ - Cuiaba'
     expect(page).to have_content 'Fornecedor: Pernalonga'
-    expect(page).to have_content "Previsão de entrega:  #{order.estimated_delivery_date}"
+    expect(page).to have_content "Previsão de entrega: #{I18n.localize(order.estimated_delivery_date)}"
   end
 
   it 'e nao visita pedidos de outros usuarios' do
@@ -65,13 +65,15 @@ describe 'Usuario ve seus proprios pedidos' do
     supplier = Supplier.create!(corporate_name:'Looney Tunes', brand_name: 'Pernalonga', city: 'Mato Leitão', 
                                 email: 'perna@longa.com', full_address: 'O que é que há, velhinho, 29', 
                                 registration_number: '33333333333333', state: 'Rio Grande do Sul')
-    first_order = Order.new(user: catatau, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now.to_date)
+    first_order = Order.create!(user: ze_colmeia, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now.to_date)
+    second_order = Order.create!(user: catatau, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now.to_date)
+
     #act
     login_as(ze_colmeia)
-    visit order_path(first_order.id)
+    visit order_path(second_order.id)
  
     #assert
-    expect(current_path).not_to eq order_path(first_order_path.id)
+    expect(current_path).not_to eq order_path(second_order.id)
     expect(current_path).to eq root_path
     expect(page).to have_content 'Voce nao possui acesso a este pedido.'
   end

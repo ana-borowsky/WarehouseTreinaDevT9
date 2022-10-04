@@ -5,7 +5,7 @@
   </div>
   <div>
   <%= f.label :supplier_id  %>
-  <%= f.collection_select :supplier_id, @suppliers, :id, :corporate_name %><br>
+  <%= f.collection_select :supplier_id, @suppliers, :id, :brand_name %><br>
   </div>
   <div>
   <%= f.label :estimated_delivery_date %>
@@ -15,5 +15,3 @@
     <%= f.submit 'Gravar' %>
   </div>
 <% end %>
-
-<%= render 'form' %>

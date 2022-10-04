@@ -1,12 +1,10 @@
+<h3><%= Order.human_attribute_name(:code) %>: <%= link_to(order.code, order_path(order.id)) %></h3>
 <dl>
-  <dt><%= Order.human_attribute_name(:code) %>:</dt>
-  <dd><%= link_to order.code,order %></dd>
-  <dt><%= Order.human_attribute_name(:warehouse_id) %></dt>
-  <dd><%= order.warehouse.full_description %>:</dd>
-  <dt><%= Order.human_attribute_name(:supplier_id) %></dt>
-  <dd><%= order.supplier.corporate_name %>:</dd>
-  <dt><%= Order.attribute_name(:user_id) %>:</dt>
-  <dt><%= order.user.description %></dt>
-  <dt><%= Order.attribute_name(:estimated_delivery_date) %>:</dt>
-  <dd><%= I18n.localize(order.estimated_delivery_date) %></dd>
+  <dt><%= Order.human_attribute_name(:warehouse_id) %> de destino: <%= order.warehouse.full_description %></dt>
+
+  <dt><%= Order.human_attribute_name(:supplier_id) %>: <%= order.supplier.brand_name %></dt>
+
+  <dt><%= Order.human_attribute_name(:user_id) %>: <%= order.user.description %></dt>
+
+  <dt><%= Order.human_attribute_name(:estimated_delivery_date) %>: <%= I18n.localize(order.estimated_delivery_date) %></dt>
 </dl>

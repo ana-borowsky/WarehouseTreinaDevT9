@@ -25,7 +25,7 @@ require 'rails_helper'
       supplier = Supplier.create!(corporate_name:'Looney Tunes', brand_name: 'Pernalonga', city: 'Mato Leitão', email: 'perna@longa.com', full_address: 'O que é que há, velhinho, 29', 
                                   registration_number: '33333333333333', state: 'Rio Grande do Sul')
       second_supplier = Supplier.create!(corporate_name:'Warner', brand_name: 'Coyote', city: 'Nao-me-toque', email: 'coyote@genio.com', full_address: 'rua dos papa-leguas, 42', 
-                                    registration_number: '33333333333334', state: 'Rio Grande do Sul')
+                                        registration_number: '33333333333334', state: 'Rio Grande do Sul')
       order = Order.create!(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now.to_date)
       #act
       login_as(user)
@@ -34,12 +34,13 @@ require 'rails_helper'
       click_on order.code
       click_on 'Editar'
       fill_in 'Previsão de entrega', with: 10.day.from_now.to_date
-      select 'Coyote', from: 'Forcenedor'
+      select 'Coyote', from: 'Fornecedor'
       click_on 'Gravar'
       #assert
       expect(page).to have_content 'Pedido atualizado com sucesso.'
       expect(page).to have_content 'Fornecedor: Coyote'
-      expect(page).to have_content 'Previsão de entrega', with: 10.day.from_now.to_date
+      expect(page).to have_content "Previsão de entrega: #{I18n.localize(10.day.from_now.to_date)}"
+
     end
 
     it 'caso seja o responsavel' do

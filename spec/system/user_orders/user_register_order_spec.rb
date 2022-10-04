@@ -29,15 +29,15 @@ require 'rails_helper'
       visit root_path
       click_on 'Registrar pedido'
       select 'CDZ - Cuiaba', from: 'Galpão de destino'
-      select supplier.corporate_name, from: 'Fornecedor'
+      select supplier.brand_name, from: 'Fornecedor'
       fill_in 'Previsão de entrega', with: 1.day.from_now.to_date
       click_on 'Gravar'
       #assert
-      expect(page).to have_content 'Pedido realizado com sucesso.'
-      expect(page).to have_content 'Numero do pedido ASDCF12345'
+      expect(page).to have_content 'Pedido registrado com sucesso.'
+      expect(page).to have_content 'Numero do pedido: ASDCF12345'
       expect(page).to have_content 'Galpão de destino: CDZ - Cuiaba'
-      expect(page).to have_content 'Fornecedor: Looney Tunes'
-      expect(page).to have_content 'Usuario responsavel: Catatau | catatau@adoromel.com'
-      expect(page).to have_content "Previsão de entrega:  #{order.estimated_delivery_date}"
+      expect(page).to have_content 'Fornecedor: Pernalonga'
+      expect(page).to have_content 'Usuario responsavel: Catatau - catatau@adoromel.com'
+      expect(page).to have_content "Previsão de entrega: #{I18n.localize(1.day.from_now.to_date)}"
     end
   end

@@ -35,15 +35,14 @@ class OrdersController < ApplicationController
   end
 
   def edit
-    @order = Order.find(params[:id])
     @warehouses = Warehouse.all
-    @suppliers = Suppliers.all
+    @suppliers = Supplier.all
   end
 
   def update
     order_params = params.require(:order).permit(:warehouse_id, :supplier_id, :estimated_delivery_date)
     @order.update(order_params)
-    redirect_to @order notice: 'Pedido atualizado com sucesso.'
+    redirect_to @order, notice: 'Pedido atualizado com sucesso.'
   end
 
   private
@@ -51,7 +50,7 @@ class OrdersController < ApplicationController
   def set_order_and_check_user
     @order = Order.find(params[:id])
     if @order.user != current_user
-      return redirect to root_path, alert: 'Voce nao possui acesso a este pedido.'
+      return redirect_to root_path, alert: 'Voce nao possui acesso a este pedido.'
     end
   end
 end

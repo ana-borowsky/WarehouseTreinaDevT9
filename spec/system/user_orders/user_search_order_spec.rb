@@ -41,8 +41,8 @@ describe 'Usuario busca por um pedido' do
     click_on 'Buscar'
     #assert
     expect(page).to have_content "Resultado da busca por: #{order.code}"
-    expect(page).to have_content "Codigo: #{order.code}"
-    expect(page).to have_content "Galpao destino: CDZ - Cuiaba"
+    expect(page).to have_content "Numero do pedido: #{order.code}"
+    expect(page).to have_content "Galpão de destino: CDZ - Cuiaba"
     expect(page).to have_content "Fornecedor: Pernalonga"
     expect(page).to have_button('Buscar')
   end
@@ -73,7 +73,7 @@ describe 'Usuario busca por um pedido' do
     expect(page).to have_content 'SDUCF12345'
     expect(page).to have_content 'SDUCF67890'
     expect(page).not_to have_content 'CDZ0000000'
-    expect(page).to have_content 'Galpao destino: Aeroporto Rio - SDU'
-    expect(page).not_to have_content "Galpao destino: CDZ - Cuiaba"
+    expect(page).to have_content 'Galpão de destino: SDU - Aeroporto Rio'
+    expect(page).not_to have_content "Galpão de destino: CDZ - Cuiaba"
   end
 end
