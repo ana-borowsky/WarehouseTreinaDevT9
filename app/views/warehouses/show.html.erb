@@ -10,3 +10,11 @@
 <%= link_to('Editar', edit_warehouse_path(@warehouse.id)) %><br><br>
 <%= button_to('Remover', warehouse_path(@warehouse.id), method: :delete) %><br>
 <%= link_to('Voltar', root_path) %>
+
+<div>
+  <h3>Itens em estoque</h3>
+
+  <% @stocks.each_pair do |pm,quantity| %>
+    <%= quantity %> x <%= pm.name %>
+  <% end %>
+</div>

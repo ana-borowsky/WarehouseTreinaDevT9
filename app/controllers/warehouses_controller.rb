@@ -7,6 +7,7 @@ class WarehousesController < ApplicationController
   
   def show
     #set_warehouse
+    @stocks = @warehouse.stock_products.group(:product_model).count
   end
 
   def new

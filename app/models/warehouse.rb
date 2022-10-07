@@ -5,6 +5,8 @@ class Warehouse < ApplicationRecord
   validates :area, numericality: true 
   validates :cep, length: { is: 8 }
 
+  has_many :stock_products
+
   def full_description
     "#{code} - #{name}"
   end
