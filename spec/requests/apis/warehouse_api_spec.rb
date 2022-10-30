@@ -59,6 +59,69 @@ describe 'Warehouse API' do
       json_response = JSON.parse(response.body)
       expect(json_response).to eq []
     end
+
+    it 'raise internal error' do
+      #arrange
+      allow(Warehouse).to receive(:all).and_raise(ActiveRecord::QueryCanceled)
+      #act
+      get '/api/v1/warehouses'
+      #assert
+      expect(response).to have_http_status(500)
+
+    end
+  end
+
+  context 'POST /api/v1/warehouses/1' do
+    it 'it success' do
+      #arrange
+      warehouse_params = { warehouse: { name: 'Aeroporto Internacional', code: 'GRU',
+                                        city: 'Guarulhos', area: 100000, address: 'Avenida do Aeroporto, 1000', cep: '15000000', 
+                                        description: 'Galpão destinado à cargas internacionais' }
+                          }
+                          
+      #act
+      post '/api/v1/warehouses', params: warehouse_params
+      #assert
+      expect(response).to have_http_status(201)
+      expect(response.content_type).to include 'application/json'
+      json_response = JSON.parse(response.body)
+      expect(json_response["name"]).to eq ('Aeroporto Internacional')
+      expect(json_response["code"]).to eq ('GRU')
+      expect(json_response["city"]).to eq ('Guarulhos')
+      expect(json_response["area"]).to eq (100000)
+      expect(json_response["address"]).to eq ('Avenida do Aeroporto, 1000')
+      expect(json_response["cep"]).to eq ('15000000')
+      expect(json_response["description"]).to eq ('Galpão destinado à cargas internacionais')
+    end
+
+    it 'fail if parameters are incomplete' do
+      #arrange
+      warehouse_params = { warehouse: { name: 'Aeroporto Curitiba', code: 'CWB'}}
+      #act
+      post '/api/v1/warehouses', params: warehouse_params
+      #assert
+      expect(response).to have_http_status(412)
+      expect(response.body).not_to include 'Nome não pode ficar em branco'
+      expect(response.body).not_to include 'Código não pode ficar em branco'
+      expect(response.body).to include 'Cidade não pode ficar em branco'
+      expect(response.body).to include 'Endereço não pode ficar em branco'
+    end
+
+    it 'fail if theres an internal error' do
+      #arrange
+      allow(Warehouse).to receive(:new).and_raise(ActiveRecord::ActiveRecordError)
+
+      warehouse_params = { warehouse: { name: 'Aeroporto Internacional', code: 'GRU',
+                                        city: 'Guarulhos', area: 100000, address: 'Avenida do Aeroporto, 1000', cep: '15000000', 
+                                        description: 'Galpão destinado à cargas internacionais' }
+                          }
+      #act
+      post '/api/v1/warehouses', params: warehouse_params
+      #assert
+      expect(response).to have_http_status(500)
+    end
+
+
   end
 end
 
